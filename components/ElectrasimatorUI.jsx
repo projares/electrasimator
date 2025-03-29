@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 export default function ElectrasimatorUI() {
   const [log, setLog] = useState([]);
@@ -17,8 +13,7 @@ export default function ElectrasimatorUI() {
     let totalEarned = 0;
     const updatedJobs = jobs.map((job) => {
       if (!job.completed) {
-        const paymentChance = Math.random();
-        const paid = paymentChance > 0.1;
+        const paid = Math.random() > 0.1;
         const logMsg = paid
           ? `✅ Completed ${job.name} for $${job.price}`
           : `🚫 Customer ghosted on ${job.name}`;
@@ -55,58 +50,50 @@ export default function ElectrasimatorUI() {
   };
 
   return (
-    <div className="p-4 grid gap-4 max-w-2xl mx-auto">
-      <Card>
-        <CardContent className="p-4 space-y-2">
-          <h1 className="text-xl font-bold">ElectraSimator: Alpha Test</h1>
-          <p>💵 Cash: ${cash}</p>
-          <p>⭐ Reputation: {reputation.toFixed(2)}</p>
-          <p>📅 Day: {day}</p>
-          <Button onClick={handleWorkDay}>Work a Day</Button>
-        </CardContent>
-      </Card>
+    <div style={{ padding: '1rem', maxWidth: '600px', margin: '0 auto' }}>
+      <div style={{ marginBottom: '1rem', padding: '1rem', background: '#222', borderRadius: '8px' }}>
+        <h1>⚡ ElectraSimator</h1>
+        <p>💵 Cash: ${cash}</p>
+        <p>⭐ Reputation: {reputation.toFixed(2)}</p>
+        <p>📅 Day: {day}</p>
+        <button onClick={handleWorkDay}>Work a Day</button>
+      </div>
 
-      <Card>
-        <CardContent className="p-4 space-y-2">
-          <h2 className="font-semibold">➕ Add Job</h2>
-          <Input
-            placeholder="Job name (e.g. Replace Panel)"
-            value={newJobName}
-            onChange={(e) => setNewJobName(e.target.value)}
-          />
-          <Input
-            type="number"
-            placeholder="Price"
-            value={newJobPrice}
-            onChange={(e) => setNewJobPrice(e.target.value)}
-          />
-          <Button onClick={handleAddJob}>Add Job</Button>
-        </CardContent>
-      </Card>
+      <div style={{ marginBottom: '1rem', padding: '1rem', background: '#222', borderRadius: '8px' }}>
+        <h2>Add Job</h2>
+        <input
+          placeholder="Job name"
+          value={newJobName}
+          onChange={(e) => setNewJobName(e.target.value)}
+          style={{ display: 'block', marginBottom: '0.5rem', width: '100%' }}
+        />
+        <input
+          type="number"
+          placeholder="Price"
+          value={newJobPrice}
+          onChange={(e) => setNewJobPrice(e.target.value)}
+          style={{ display: 'block', marginBottom: '0.5rem', width: '100%' }}
+        />
+        <button onClick={handleAddJob}>Add Job</button>
+      </div>
 
-      <Card>
-        <CardContent className="p-4 space-y-2">
-          <h2 className="font-semibold">📋 Job Board</h2>
-          {jobs.length === 0 ? (
-            <p>No jobs yet!</p>
-          ) : (
-            jobs.map((job, i) => (
-              <div key={i} className="text-sm">
-                {job.completed ? "✅" : "🕒"} {job.name} — ${job.price}
-              </div>
-            ))
-          )}
-        </CardContent>
-      </Card>
+      <div style={{ marginBottom: '1rem', padding: '1rem', background: '#222', borderRadius: '8px' }}>
+        <h2>📋 Job Board</h2>
+        {jobs.length === 0 ? (
+          <p>No jobs yet!</p>
+        ) : (
+          jobs.map((job, i) => (
+            <div key={i} style={{ fontSize: '0.9rem' }}>
+              {job.completed ? '✅' : '🕒'} {job.name} — ${job.price}
+            </div>
+          ))
+        )}
+      </div>
 
-      <Card>
-        <CardContent className="p-4">
-          <h2 className="font-semibold mb-2">📜 Event Log</h2>
-          <div className="space-y-1 text-sm">
-            {log.length === 0 ? <p>No activity yet!</p> : log.map((entry, idx) => <p key={idx}>{entry}</p>)}
-          </div>
-        </CardContent>
-      </Card>
+      <div style={{ padding: '1rem', background: '#222', borderRadius: '8px' }}>
+        <h2>📜 Event Log</h2>
+        {log.length === 0 ? <p>No activity yet!</p> : log.map((entry, idx) => <p key={idx}>{entry}</p>)}
+      </div>
     </div>
   );
 }
