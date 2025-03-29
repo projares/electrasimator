@@ -1,0 +1,32 @@
+ElectraSimator: Alpha Test (React Frontend)
+
+🧰 HOW TO INSTALL & RUN LOCALLY
+
+1. Make sure you have Node.js and npm installed:
+   https://nodejs.org/
+
+2. Open a terminal and go to this directory:
+   cd rlGame
+
+3. Create a new React app (if you haven't already):
+   npx create-react-app electrasimator
+   cd electrasimator
+
+4. Copy everything from this folder into your React app:
+   cp -r ../rlGame/src ./src
+   cp -r ../rlGame/public ./public
+
+5. Replace App.js with the following:
+   import ElectrasimatorUI from './components/ElectrasimatorUI';
+   function App() {
+     return <ElectrasimatorUI />;
+   }
+   export default App;
+
+6. Start the app:
+   npm install
+   npm start
+
+🔥 Visit http://localhost:3000 to play ElectraSimator Alpha
+
+Happy simming, contractor!
